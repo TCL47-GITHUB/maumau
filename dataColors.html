@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Data</title>
+    <style>
+        .color-container {
+           // display: flex;
+            //flex-wrap: wrap;
+          display: grid;
+          grid-template-columns: repeat(6,minmax(0,1fr));
+        }
+      @media only screen and (max-width: 1400px) {
+	.color-container {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	.color-container {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+@media only screen and (max-width: 880px) {
+	.color-container {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media only screen and (max-width: 680px) {
+	.color-container {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.color-container {
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
+}
+
+        .color-box {
+            position: relative;
+            aspect-ratio: 1;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+        }
+
+        .copy-button {
+            display: none;
+            position: absolute;
+            bottom: 5px;
+            padding: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .color-box:hover .copy-button {
+            display: block;
+        }
+      .color-box div{
+     box-sizing: border-box;
+    background: #00000066;
+    padding: 6px;
+    color: white;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+      }
+      
+    </style>
+</head>
+<body>
+    <script>
+        const dataColors = [
+            { name: 'Đen', color: '#000000' },
+            { name: 'Trắng', color: '#FFFFFF' },
+            { name: 'Vàng', color: '#FFFF00' },
+            { name: 'Vàng hồng', color: '#FFC0CB' },
+            { name: 'Hồng', color: '#FF69B4' },
+            { name: 'Kem', color: '#FFE4B5' },
+            { name: 'Đỏ', color: '#FF0000' },
+            { name: 'Xanh dương', color: '#0000FF' },
+            { name: 'Xanh lá', color: '#008000' },
+            { name: 'Xám', color: '#808080' },
+            { name: 'Nâu', color: '#8B4513' },
+            { name: 'Tím', color: '#800080' },
+            { name: 'Cam', color: '#FFA500' },
+            { name: 'Bạc', color: '#C0C0C0' },
+        ];
+
+        window.onload = function () {
+            const colorContainer = document.getElementById('color-container');
+
+            dataColors.forEach(colorData => {
+                const colorBox = document.createElement('div');
+                colorBox.style.backgroundColor = colorData.color;
+                colorBox.className = 'color-box';
+
+                const colorName = document.createElement('div');
+                colorName.textContent = colorData.name;
+
+                const copyButton = document.createElement('button');
+                copyButton.textContent = 'Copy';
+                copyButton.className = 'copy-button';
+                copyButton.addEventListener('click', function () {
+                    copyToClipboard(colorData.color);
+                });
+
+                colorBox.appendChild(colorName);
+                colorBox.appendChild(copyButton);
+                colorContainer.appendChild(colorBox);
+            });
+        };
+
+        function copyToClipboard(text) {
+            const dummyInput = document.createElement('input');
+            document.body.appendChild(dummyInput);
+            dummyInput.setAttribute('value', text);
+            dummyInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummyInput);
+            alert('Color code copied to clipboard: ' + text);
+        }
+    </script>
+
+    <div id="color-container" class="color-container"></div>
+</body>
+</html>
