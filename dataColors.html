@@ -47,15 +47,19 @@
         }
 
         .copy-button {
-            display: none;
-            position: absolute;
-            bottom: 5px;
-            padding: 6px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
+                display: none;
+    position: absolute;
+    bottom: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: #00000082;
+    backdrop-filter: blur(1px) invert(1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: 1s;
         }
 
         .color-box:hover .copy-button {
